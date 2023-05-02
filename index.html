@@ -19,33 +19,31 @@
         <h3>Create Game</h3>
         <div>
           <label for="num-players">Number of Players:</label>
-          <input type="number" id="num-players-input" name="num-players" min="5" max="20">
+          <input type="number" id="num-players" name="num-players" min="5" max="20">
         </div>
         <div>
           <label for="num-killers">Number of Killers:</label>
-          <input type="number" id="num-killers-input" name="num-killers" min="1" max="5">
+          <input type="number" id="num-killers" name="num-killers" min="1" max="5">
         </div>
         <div>
-          <label for="has-priest">Priest:</label>
-          <input type="checkbox" id="has-priest-input" name="has-priest">
+          <label for="priest">Priest:</label>
+          <input type="checkbox" id="priest" name="priest">
         </div>
-        <button id="create-game-button">Start Game</button>
-        <p id="game-code-display"></p>
+        <button onclick="startGame()">Start Game</button>
+        <p id="game-code"></p>
       </div>
       <div id="join-game" class="hidden">
         <h3>Join Game</h3>
         <div>
           <label for="game-code">Game Code:</label>
-          <input type="text" id="game-code-input" name="game-code">
+          <input type="text" id="game-code" name="game-code">
         </div>
         <div>
           <label for="player-name">Player Name:</label>
-          <input type="text" id="player-name-input" name="player-name">
+          <input type="text" id="player-name" name="player-name">
         </div>
-        <button id="join-game-button">Join</button>
+        <button onclick="join()">Join</button>
       </div>
-      <p id="game-role-display" class="hidden"></p>
-      <p id="error-message"></p>
     </main>
     <footer>
       <p>Created by [Your Name]</p>
