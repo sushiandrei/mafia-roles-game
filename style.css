@@ -1,53 +1,40 @@
-body {
-  background-color: #f7f7f7;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
+/* Hide and show classes */
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* Game role display */
+#game-role-display {
+  text-align: center;
 }
-
-h1 {
-  font-size: 36px;
+#game-role-display h3 {
   margin-top: 0;
 }
 
-button {
-  background-color: #008CBA;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 18px;
-  cursor: pointer;
+/* Storyteller page */
+#storyteller-page {
+  text-align: center;
+}
+#storyteller-page h2 {
+  margin-top: 0;
+}
+#storyteller-page button {
+  margin: 10px;
 }
 
-button:hover {
-  background-color: #006c9b;
+/* Player page */
+#player-page {
+  text-align: center;
 }
-
-input[type="text"], input[type="number"] {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-  box-sizing: border-box;
+#player-page h2 {
+  margin-top: 0;
 }
-
-label {
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.error-message {
-  color: red;
+#player-page p {
   margin-top: 10px;
+}
+#player-page button {
+  margin: 10px;
 }
