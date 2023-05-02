@@ -56,5 +56,7 @@ function joinGame() {
 }
 
 // Event listeners
-createGameButton.addEventListener('click', createGame);
-joinGameButton.addEventListener('click', joinGame);
+document.addEventListener('DOMContentLoaded', function() {
+  createGameButton.addEventListener('click', createGame);
+  joinGameButton.addEventListener('click', joinGame);
+});
