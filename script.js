@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Functions
   function createGame() {
+    console.log('Create game button clicked');
     numPlayers = parseInt(numPlayersInput.value);
     numKillers = parseInt(numKillersInput.value);
     hasPriest = hasPriestInput.checked;
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function joinGame() {
+    console.log('Join game button clicked');
     gameCode = gameCodeInput.value;
 
     // TODO: Fetch game data from database
