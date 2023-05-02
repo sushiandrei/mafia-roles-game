@@ -1,92 +1,83 @@
-// Global variables
-let numPlayers;
-let numKillers;
-let hasPriest;
-let playerName;
-let gameData;
+document.addEventListener('DOMContentLoaded', () => {
+  // Global variables
+  let numPlayers;
+  let numKillers;
+  let hasPriest;
+  let playerName;
+  let gameCode;
 
-// DOM elements
-const joinGameForm = document.getElementById('join-game-form');
-const createGameForm = document.getElementById('create-game-form');
-const gameCodeInput = document.getElementById('game-code-input');
-const numPlayersInput = document.getElementById('num-players-input');
-const numKillersInput = document.getElementById('num-killers-input');
-const hasPriestInput = document.getElementById('has-priest-input');
-const playerNameInput = document.getElementById('player-name-input');
-const joinGameButton = document.getElementById('join-game-button');
-const createGameButton = document.getElementById('create-game-button');
-const gameCodeDisplay = document.getElementById('game-code-display');
-const gameRoleDisplay = document.getElementById('game-role-display');
-const errorMessage = document.getElementById('error-message');
-const gameStartButton = document.getElementById('game-start-button');
-const playerList = document.getElementById('player-list');
-const storytellerPage = document.getElementById('storyteller-page');
-const playersPage = document.getElementById('players-page');
-const gameStatusLabel = document.getElementById('game-status-label');
+  // DOM elements
+  const joinGameForm = document.getElementById('join-game-form');
+  const createGameForm = document.getElementById('create-game-form');
+  const gameCodeInput = document.getElementById('game-code-input');
+  const numPlayersInput = document.getElementById('num-players-input');
+  const numKillersInput = document.getElementById('num-killers-input');
+  const hasPriestInput = document.getElementById('has-priest-input');
+  const playerNameInput = document.getElementById('player-name-input');
+  const joinGameButton = document.getElementById('join-game-button');
+  const createGameButton = document.getElementById('create-game-button');
+  const gameCodeDisplay = document.getElementById('game-code-display');
+  const gameRoleDisplay = document.getElementById('game-role-display');
+  const errorMessage = document.getElementById('error-message');
+  const startGameButton = document.getElementById('start-game-button');
+  const playerListDisplay = document.getElementById('player-list-display');
+  const statusDisplay = document.getElementById('status-display');
 
-// Functions
-function createGame() {
-  numPlayers = parseInt(numPlayersInput.value);
-  numKillers = parseInt(numKillersInput.value);
-  hasPriest = hasPriestInput.checked;
+  // Functions
+  function createGame() {
+    numPlayers = parseInt(numPlayersInput.value);
+    numKillers = parseInt(numKillersInput.value);
+    hasPriest = hasPriestInput.checked;
 
-  // Validate inputs
-  if (numPlayers < numKillers + 1) {
-    errorMessage.textContent = 'Number of players must be greater than number of killers.';
-    return;
+    // Validate inputs
+    if (numPlayers < numKillers + 1) {
+      errorMessage.textContent = 'Number of players must be greater than number of killers.';
+      return;
+    }
+
+    // Generate game code
+    gameCode = Math.floor(Math.random() * 10000);
+    gameCodeDisplay.textContent = gameCode;
+
+    // Hide create game form and show game code
+    createGameForm.style.display = 'none';
+    gameCodeDisplay.style.display = 'block';
+
+    // Show start game button
+    startGameButton.style.display = 'block';
+
+    // TODO: Save game data to database
   }
 
-  // Generate game code
-  const gameCode = Math.floor(Math.random() * 10000);
-  gameCodeDisplay.textContent = gameCode;
+  function joinGame() {
+    gameCode = gameCodeInput.value;
 
-  // Hide create game form and show game code
-  createGameForm.style.display = 'none';
-  gameCodeDisplay.style.display = 'block';
+    // TODO: Fetch game data from database
 
-  // TODO: Save game data to database
-  gameData = {
-    gameCode: gameCode,
-    numPlayers: numPlayers,
-    numKillers: numKillers,
-    hasPriest: hasPriest,
-    players: []
-  };
-}
+    // TODO: Validate game data and show error message if invalid
 
-function joinGame() {
-  const gameCode = gameCodeInput.value;
+    // Hide join game form and show game role
+    joinGameForm.style.display = 'none';
+    gameRoleDisplay.style.display = 'block';
 
-  // TODO: Fetch game data from database
-  gameData = {
-    gameCode: gameCode,
-    numPlayers: 8,
-    numKillers: 2,
-    hasPriest: true,
-    players: [
-      { name: 'Player 1', role: 'Innocent' },
-      { name: 'Player 2', role: 'Killer' },
-      { name: 'Player 3', role: 'Innocent' },
-      { name: 'Player 4', role: 'Killer' },
-      { name: 'Player 5', role: 'Innocent' },
-      { name: 'Player 6', role: 'Innocent' },
-      { name: 'Player 7', role: 'Innocent' },
-      { name: 'Player 8', role: 'Innocent' }
-    ]
-  };
-
-  // TODO: Validate game data and show error message if invalid
-  if (!gameData) {
-    errorMessage.textContent = 'Invalid game code.';
-    return;
+    // TODO: Generate and display game role based on game data
   }
 
-  // Hide join game form and show game role
-  joinGameForm.style.display = 'none';
-  gameRoleDisplay.style.display = 'block';
+  function startGame() {
+    // TODO: Update game data in database to indicate game has started
 
-  // TODO: Generate and display game role based on game data
-  const player = gameData.players.find(player => player.name === playerNameInput.value);
-  if (player) {
-    gameStatusLabel.textContent = 'The game has started.';
-    gameStartButton.style.display
+    // Hide game code and start game button
+    gameCodeDisplay.style.display = 'none';
+    startGameButton.style.display = 'none';
+
+    // Show player list display
+    playerListDisplay.style.display = 'block';
+
+    // TODO: Display list of players who have joined the game
+  }
+
+  // Event listeners
+  createGameButton.addEventListener('click', createGame);
+  joinGameButton.addEventListener('click', joinGame);
+  startGameButton.addEventListener('click', startGame);
+});
